@@ -5,11 +5,7 @@ import aws_cdk.aws_ec2 as ec2
 from aws_cdk.pipelines import ManualApprovalStep
 from aws_cdk.pipelines import CodePipeline, CodePipelineSource, ShellStep
 from constructs import Construct
-from aws_cdk import (
-    # Duration,
-    Stack,
-    # aws_sqs as sqs,
-)
+from github_codepipe.stage import Stage
 
 class GithubCodepipeStack(Stack):
 
@@ -39,3 +35,11 @@ class GithubCodepipeStack(Stack):
                             ]
                             )        
         )  
+        ###### AWS acc - dev-env  ######
+        dev_stage = pipeline.add_stage(Stage(
+            self,
+            "dev-env", #change
+            env=cdk.Environment(account="991958799346", region="eu-central-1")
+            )
+        )
+        dev_stage.add_pre(ManualApprovalStep('approval'))
