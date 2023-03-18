@@ -19,11 +19,11 @@ class GithubCodepipeStack(Stack):
         self.backend_repository =  codecommit.Repository.from_repository_name(
             self,
             "github-to-aws",
-            repository_name="github-codepipeline" # aws codecommit repository name
+            repository_name="github-codepipe" # aws codecommit repository name
         )
         pipeline = CodePipeline(
             self,
-            "github-to-codepipeline",
+            "github-to-codepipe",
             pipeline_name=self.backend_repository.repository_name,
             cross_account_keys=True,
             self_mutation=True,
