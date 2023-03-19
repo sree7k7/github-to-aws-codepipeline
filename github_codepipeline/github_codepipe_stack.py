@@ -15,7 +15,7 @@ class GithubCodepipeStack(Stack):
         self.backend_repository =  codecommit.Repository.from_repository_name(
             self,
             "github-to-aws",
-            repository_name="github-codepipe" # aws codecommit repository name
+            repository_name="github-codepipeline" # aws codecommit repository name
         )
         pipeline = CodePipeline(
             self,
@@ -39,7 +39,7 @@ class GithubCodepipeStack(Stack):
         dev_stage = pipeline.add_stage(Stage(
             self,
             "dev-env", #change
-            env=cdk.Environment(account="991958799346", region="eu-central-1")
+            env=cdk.Environment(account="99195111111", region="eu-central-1")
             )
         )
         dev_stage.add_pre(ManualApprovalStep('approval'))

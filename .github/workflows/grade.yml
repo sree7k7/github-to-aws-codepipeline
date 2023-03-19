@@ -2,11 +2,11 @@ name: AWS codecommit
 on:
   push
 env:
-  INPUT_REPOSITORY_NAME : "github-codepipe"
+  INPUT_REPOSITORY_NAME : "github-codepipeline"
   AWS_REGION : eu-central-1
   AWS_CODECOMMIT_URL: https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/github-codepipeline
-  AWS_ASSUME_ROLE: arn:aws:iam::419653499649:role/githubconnectivity-Role-1I75IQ2NQK1XR
-  AWS_ROLE_NAME: githubconnectivity-Role-1I75IQ2NQK1XR
+  AWS_ASSUME_ROLE: arn:aws:iam::111111111111:role/githubconnectivity-Role-xxxxxxxx
+  AWS_ROLE_NAME: githubconnectivity-Role-xxxxxxxx
 # permission can be added at job level or workflow level    
 permissions:
       id-token: write   # This is required for requesting the JWT
