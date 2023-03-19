@@ -27,6 +27,7 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
+3. [Clone](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html) (empty) AWS repository.
 3. Copy the github code and paste in AWS repository created in step 2.
 4. Execute the following commands in terminal.
 
@@ -69,6 +70,8 @@ env:
   INPUT_REPOSITORY_NAME : "<aws-codecommit-repo name>"
   AWS_REGION : <aws-region>
   AWS_CODECOMMIT_URL: <aws codecommit repo url>
+  AWS_ASSUME_ROLE: <role-arn>
+  AWS_ROLE_NAME: <role-name>
 ```
 e.g: 
 ```
@@ -94,7 +97,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::419653499649:role/githubconnectivity-Role-1I75IQ2NQK1XR
+          role-to-assume: arn:aws:iam::<aws-account>:role/githubconnectivity-Role-1I75IQ2NQK1XR
           role-session-name: githubconnectivity-Role-1I75IQ2NQK1XR
           aws-region: ${{ env.AWS_REGION }}
       # Sync to AWS codecommit
