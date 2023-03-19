@@ -4,8 +4,8 @@
 
 - [Prerequisites](#prerequisites)
 - [Adding the identity provider to AWS](#adding-the-identity-provider-to-aws)
-- [Github to Codecommit](#github-to-codecommit)
-- [Push the code to GitHub](#push-the-code-to-github)
+- [Codecommit](#codecommit)
+- [Push the code to GitHub](#push-aws-codecommit-code-to-github)
 - [Integration between github and aws codecommit](#integration-between-github-and-aws-codecommit)
 
 ### Prerequisites
@@ -23,7 +23,7 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 - After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this]() CloudFormation script in Account A. Copy the IAM role from output section.
 
-### Github to Codecommit:
+### Codecommit:
 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
@@ -41,7 +41,9 @@ git push
 
 **Note**: Check your branch name `master` or `main`
 
-### Push the code to GitHub
+### Push aws codecommit code to GitHub
+
+- Create a github repo (e.g: `github-codepipeline`).
 
 ```git
 git init
