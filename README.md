@@ -36,8 +36,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 git add .
 git commit -m "first commit"
-git push
+git branch -M main
+git push -u origin main
 ```
+Deploy the code:
+`cdk deploy` 
 
 **Note**: Check your branch name `master` or `main`
 
