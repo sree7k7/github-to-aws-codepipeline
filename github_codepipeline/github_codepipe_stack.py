@@ -26,7 +26,7 @@ class GithubCodepipeStack(Stack):
             synth=ShellStep("Synth",
                             input=CodePipelineSource.code_commit(
                             repository=self.backend_repository, 
-                            branch="master"
+                            branch="main"
                             ),
                             commands=[
                                 "npm install -g aws-cdk",
@@ -35,11 +35,11 @@ class GithubCodepipeStack(Stack):
                             ]
                             )        
         )  
-        ###### AWS acc - dev-env  ######--master
-        # dev_stage = pipeline.add_stage(Stage(
-        #     self,
-        #     "dev-env", #change
-        #     env=cdk.Environment(account="991958799346", region="eu-central-1")
-        #     )
-        # )
-        # dev_stage.add_pre(ManualApprovalStep('approval'))
+        ##### AWS acc - dev-env  ######--master
+        dev_stage = pipeline.add_stage(Stage(
+            self,
+            "dev-env", #change
+            env=cdk.Environment(account="991958799346", region="eu-central-1")
+            )
+        )
+        dev_stage.add_pre(ManualApprovalStep('approval'))
