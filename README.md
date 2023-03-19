@@ -1,5 +1,5 @@
 # Push github code to AWS codecommit - (CI/CD) using CDK Pipelines
-
+![github-awscodepipeline](pics/github-awscodecommit.png)
 ## In this article
 
 - [Prerequisites](#prerequisites)
