@@ -21,7 +21,7 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 - For the provider URL: Use https://token.actions.githubusercontent.com
 - For the "Audience": Use `sts.amazonaws.com`
 
-- After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this]() CloudFormation script in Account A. Copy the IAM role from output section.
+- After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this](CloudFormation/github-iam.yml) CloudFormation script in Account A. Copy the IAM role from output section.
 
 ### Codecommit:
 
@@ -120,3 +120,10 @@ jobs:
             git push origin HEAD:main 
             git push origin main
 ```
+
+In `Account B` check your resources (e.g: s3)
+
+**links**:
+- https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html
+- https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html
+- https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
