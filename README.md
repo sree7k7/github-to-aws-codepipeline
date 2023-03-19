@@ -17,8 +17,11 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 ## Adding the identity provider to AWS
 
+- In AWS IAM console, click: Identity provider -> Choose: OpenID Connect.
+- For the provider URL: Use https://token.actions.githubusercontent.com
+- For the "Audience": Use `sts.amazonaws.com`
+
 - After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this]() CloudFormation script in Account A. Copy the IAM role from output section.
-  - ss
 
 ### Github to Codecommit:
 
@@ -62,119 +65,48 @@ env:
   AWS_REGION : <aws-region>
   AWS_CODECOMMIT_URL: <aws codecommit repo url>
 ```
-
-# Welcome to your CDK Python project
-
-This is a blank project for CDK development with Python.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
-
+e.g: 
 ```
-python3 -m venv .venv
+name: AWS codecommit
+on:
+  push
+env:
+  INPUT_REPOSITORY_NAME : "github-codepipeline"
+  AWS_REGION : eu-central-1
+  AWS_CODECOMMIT_URL: <aws codecommit repo url>
+# permission can be added at job level or workflow level    
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+jobs:
+  awscodecommit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::419653499649:role/githubconnectivity-Role-1I75IQ2NQK1XR
+          role-session-name: githubconnectivity-Role-1I75IQ2NQK1XR
+          aws-region: ${{ env.AWS_REGION }}
+      # Sync to AWS codecommit
+
+      - name:  Sync to AWS codecommit
+        run: |
+            #!/bin/sh
+            set -ue
+            git config --global credential.'https://git-codecommit.*.amazonaws.com'.helper '!aws codecommit credential-helper $@'
+            git config --global --add safe.directory /github/workspace
+            git config --global credential.UseHttpPath true
+
+            git pull
+            git remote set-url origin ${{ env.AWS_CODECOMMIT_URL }}
+
+            git config pull.ff only
+            git push origin main --force
+            git push origin HEAD:main 
+            git push origin main
 ```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
-- `cdk ls`          list all stacks in the app
-- `cdk synth`       emits the synthesized CloudFormation template
-- `cdk deploy`      deploy this stack to your default AWS account/region
-- `cdk diff`        compare deployed stack with current state
-- `cdk docs`        open CDK documentation
-
-Enjoy!
-
-# Welcome to your CDK Python project
-
-This is a blank project for CDK development with Python.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
-
-```
-python3 -m venv .venv
-```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
-- `cdk ls`          list all stacks in the app
-- `cdk synth`       emits the synthesized CloudFormation template
-- `cdk deploy`      deploy this stack to your default AWS account/region
-- `cdk diff`        compare deployed stack with current state
-- `cdk docs`        open CDK documentation
-
-Enjoy!
