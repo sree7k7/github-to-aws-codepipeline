@@ -28,7 +28,7 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
 3. [Clone](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html) (empty) AWS repository.
-3. Copy the github code and paste in AWS repository created in step 2.
+3. Copy the github code and paste in AWS repository created in step 1.
 4. Execute the following commands in terminal.
 
 ```
@@ -42,8 +42,6 @@ git push -u origin main
 ```
 Deploy the code:
 `cdk deploy` 
-
-**Note**: Check your branch name `master` or `main`
 
 ### Push aws codecommit code to GitHub
 
