@@ -35,7 +35,7 @@ class GithubCodepipeStack(Stack):
                             ]
                             )        
         )  
-        ###### AWS acc - dev-env  ######--
+        ###### AWS acc - dev-env  ######--master
         dev_stage = pipeline.add_stage(Stage(
             self,
             "dev-env", #change
