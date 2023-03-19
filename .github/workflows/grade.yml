@@ -37,6 +37,6 @@ jobs:
             git remote set-url origin ${{ env.AWS_CODECOMMIT_URL }}
 
             git config pull.ff only
-            git push origin master --force
-            git push origin HEAD:master 
-            git push origin master
+            git push origin main --force
+            git push origin HEAD:main 
+            git push origin main
