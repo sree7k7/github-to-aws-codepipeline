@@ -1,6 +1,10 @@
 Parameters:
+  GitHubOrg:
+    Type: String
+    Description: your githug org or username
   RepositoryName:
     Type: String
+    Description: github repo name
   OIDCProviderArn:
     Description: Arn for the GitHub OIDC Provider.
     Default: ""
@@ -31,7 +35,20 @@ Resources:
             Condition:
               StringEquals:
                 token.actions.githubusercontent.com:aud: !Ref OIDCAudience
-
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+  RolePolicies: 
+    Type: "AWS::IAM::Policy"
+    Properties: 
+      PolicyName: "root"
+      PolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Action: "*"
+            Resource: "*"
+      Roles: 
+        - Ref: "Role"
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
     Condition: CreateOIDCProvider

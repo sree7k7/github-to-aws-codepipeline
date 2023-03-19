@@ -40,7 +40,8 @@ git commit -m "first commit"
 git branch -M main
 git push -u origin main
 ```
-Deploy the code:
+**Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
+- Deploy the code:
 `cdk deploy` 
 
 ### Push aws codecommit code to GitHub
