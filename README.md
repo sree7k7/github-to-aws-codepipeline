@@ -81,7 +81,9 @@ on:
 env:
   INPUT_REPOSITORY_NAME : "github-codepipeline"
   AWS_REGION : eu-central-1
-  AWS_CODECOMMIT_URL: <aws codecommit repo url>
+  AWS_CODECOMMIT_URL: https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/github-codepipeline
+  AWS_ASSUME_ROLE: arn:aws:iam::111111111111:role/githubconnectivity-Role-xxxxxxxx
+  AWS_ROLE_NAME: githubconnectivity-Role-xxxxxxxx
 # permission can be added at job level or workflow level    
 permissions:
       id-token: write   # This is required for requesting the JWT
@@ -97,8 +99,8 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::<aws-account>:role/githubconnectivity-Role-1I75IQ2NQK1XR
-          role-session-name: githubconnectivity-Role-1I75IQ2NQK1XR
+          role-to-assume: ${{ env.AWS_ASSUME_ROLE }}
+          role-session-name: ${{ env.AWS_ROLE_NAME }}
           aws-region: ${{ env.AWS_REGION }}
       # Sync to AWS codecommit
 
