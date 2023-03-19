@@ -36,10 +36,10 @@ class GithubCodepipeStack(Stack):
                             )        
         )  
         ###### AWS acc - dev-env  ######--master
-        dev_stage = pipeline.add_stage(Stage(
-            self,
-            "dev-env", #change
-            env=cdk.Environment(account="991958799346", region="eu-central-1")
-            )
-        )
-        dev_stage.add_pre(ManualApprovalStep('approval'))
+        # dev_stage = pipeline.add_stage(Stage(
+        #     self,
+        #     "dev-env", #change
+        #     env=cdk.Environment(account="991958799346", region="eu-central-1")
+        #     )
+        # )
+        # dev_stage.add_pre(ManualApprovalStep('approval'))
