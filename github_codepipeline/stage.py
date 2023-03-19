@@ -1,6 +1,6 @@
 import aws_cdk as cdk
 from constructs import Construct
-from github_codepipe.storage import Storage
+from github_codepipeline.storage import Storage
 
 
 

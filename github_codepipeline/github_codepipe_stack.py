@@ -5,7 +5,7 @@ import aws_cdk.aws_ec2 as ec2
 from aws_cdk.pipelines import ManualApprovalStep
 from aws_cdk.pipelines import CodePipeline, CodePipelineSource, ShellStep
 from constructs import Construct
-from github_codepipe.stage import Stage
+from github_codepipeline.stage import Stage
 
 class GithubCodepipeStack(Stack):
 

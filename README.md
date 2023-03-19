@@ -3,8 +3,10 @@
 ## In this article
 
 - [Prerequisites](#prerequisites)
+- [Adding the identity provider to AWS](#adding-the-identity-provider-to-aws)
 - [Github to Codecommit](#github-to-codecommit)
 - [Push the code to GitHub](#push-the-code-to-github)
+- [Integration between github and aws codecommit](#integration-between-github-and-aws-codecommit)
 
 ### Prerequisites
 
@@ -13,13 +15,17 @@
 
 Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) will help setting up AWS CI/CD in CDK. The below step are executed based on this doc
 
+## Adding the identity provider to AWS
+
+- After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this]() CloudFormation script in Account A. Copy the IAM role from output section.
+  - ss
+
 ### Github to Codecommit:
 
-1. Execute [this]() CloudFormation script in Account A.
-2. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
-3. Clone [this]() github repo.
-4. Copy the github code and paste in AWS repository created in step 2.
-5. Execute the following commands in terminal.
+1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
+2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
+3. Copy the github code and paste in AWS repository created in step 2.
+4. Execute the following commands in terminal.
 
 ```
 python3 -m venv .venv
@@ -44,7 +50,7 @@ git push -u origin main
 - In github verify and clone the github repo.
 - From now, you'll be using github to push the code.
 
-### Make integration between github and aws codecommit
+### Integration between github and aws codecommit
 
 - In github repo, create a directory .github/workflows.
 - add a file: `.grade.yaml`
@@ -52,14 +58,10 @@ git push -u origin main
 
 ```
 env:
-  INPUT_REPOSITORY_NAME : "<aws-codecommit-repo>"
+  INPUT_REPOSITORY_NAME : "<aws-codecommit-repo name>"
   AWS_REGION : <aws-region>
   AWS_CODECOMMIT_URL: <aws codecommit repo url>
 ```
-
-### example 1
-
-- text
 
 # Welcome to your CDK Python project
 
