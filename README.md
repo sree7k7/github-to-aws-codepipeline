@@ -17,7 +17,8 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 ## Adding the identity provider to AWS
 
-- In AWS IAM console, click: Identity provider -> Choose: OpenID Connect.
+- In AWS IAM console, click: Identity provider → Choose: OpenID Connect.
+
 - For the provider URL: Use https://token.actions.githubusercontent.com
 - For the "Audience": Use `sts.amazonaws.com`
 
