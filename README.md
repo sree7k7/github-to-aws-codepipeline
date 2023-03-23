@@ -1,12 +1,21 @@
 # Push github code to AWS codecommit - (CI/CD) using CDK Pipelines
+
 ![github-awscodepipeline](pics/github-awscodecommit.png)
+
 ## In this article
 
+- [Purpose](#purpose)
 - [Prerequisites](#prerequisites)
 - [Adding the identity provider to AWS](#adding-the-identity-provider-to-aws)
 - [Codecommit](#codecommit)
 - [Push the code to GitHub](#push-aws-codecommit-code-to-github)
 - [Integration between github and aws codecommit](#integration-between-github-and-aws-codecommit)
+
+### Purpose
+
+Helps users to accept code changes from both github and awscodecommit. User can commit in both ends i.e, github and codecommit.
+
+Outcome, **SSOT** stays and have access to same code.
 
 ### Prerequisites
 
@@ -19,12 +28,12 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 - In AWS IAM console, click: Identity provider → Choose: OpenID Connect.
 
-- For the provider URL: Use https://token.actions.githubusercontent.com
+- For the provider URL: Use <https://token.actions.githubusercontent.com>
 - For the "Audience": Use `sts.amazonaws.com`
 
 - After, adding GitHub [OICD](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) provider to IAM. Execute [this](CloudFormation/github-iam.yml) CloudFormation script in Account A. Copy the IAM role from output section.
 
-### Codecommit:
+### Codecommit
 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
@@ -41,9 +50,11 @@ git commit -m "first commit"
 git branch -M main
 git push -u origin main
 ```
+
 **Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
+
 - Deploy the code:
-`cdk deploy` 
+`cdk deploy`
 
 ### Push aws codecommit code to GitHub
 
@@ -73,7 +84,9 @@ env:
   AWS_ASSUME_ROLE: <role-arn>
   AWS_ROLE_NAME: <role-name>
 ```
-e.g: 
+
+e.g:
+
 ```
 name: AWS codecommit
 on:
@@ -124,6 +137,7 @@ jobs:
 In `Account B` check your resources (e.g: s3)
 
 **links**:
-- https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html
-- https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html
-- https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+
+- <https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html>
+- <https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html>
+- <https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services>
