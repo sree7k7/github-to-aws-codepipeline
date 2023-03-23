@@ -13,7 +13,7 @@
 
 ### Purpose
 
-Helps users to accept code changes from both github and awscodecommit. User can commit in both ends i.e, github and codecommit.
+Helps users to accept code changes from both github and awscodecommit. User can commit/push in both ends i.e, github and codecommit.
 
 Outcome, **SSOT** stays and have access to same code.
 
