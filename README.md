@@ -48,9 +48,9 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-git add .
 cdk deploy
 
+git add .
 git commit -m "first commit"
 git branch -M main
 git push -u origin main
