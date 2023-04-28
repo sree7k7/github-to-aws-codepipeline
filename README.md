@@ -38,7 +38,8 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
 3. [Clone](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html) (empty) AWS repository.
-3. Copy this github code and paste in AWS repository created in step 1.
+3. Copy this [github](https://github.com/sree7k7/github-to-aws-codepipeline) code and paste in AWS repository created in step 1.
+    - Later, change your code accordingly.
 4. Execute the following commands in terminal.
 
 > **Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
@@ -57,7 +58,7 @@ git push -u origin main
 
 - Create a github repo (e.g: `github-codepipeline`).
 
-```git
+```hcl
 git init
 git remote set-url origin git@github.com:xxxx/first_app.git
 git branch -M main
