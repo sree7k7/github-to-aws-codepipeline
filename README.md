@@ -85,7 +85,7 @@ env:
 
 e.g:
 
-```
+```yaml
 name: AWS codecommit
 on:
   push
