@@ -44,7 +44,7 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 
 > **Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
 
-```
+```cdk
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
