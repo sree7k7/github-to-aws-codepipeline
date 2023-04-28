@@ -72,7 +72,7 @@ git push -u origin main
 
 ### Integration between github and aws codecommit
 
-- In github repo, create a directory .github/workflows.
+- In github repo, create folders .github/workflows.
 - add a file: `.grade.yaml`
 - In `.grade.yaml` file, change the following parameters:
 
