@@ -38,8 +38,10 @@ Follow this [guide](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html) 
 1. Create a new repository in AWS codecommit (e.g: `github-codepipeline`).
 2. Clone [this](https://github.com/sree7k7/github-to-aws-codepipeline) github repo.
 3. [Clone](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started.html) (empty) AWS repository.
-3. Copy the github code and paste in AWS repository created in step 1.
+3. Copy this github code and paste in AWS repository created in step 1.
 4. Execute the following commands in terminal.
+
+> **Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
 
 ```
 python3 -m venv .venv
@@ -50,11 +52,6 @@ git commit -m "first commit"
 git branch -M main
 git push -u origin main
 ```
-
-**Note**: replace the **account-id** in `app.py`, `github_codepipe_stack.py`
-
-- Deploy the code:
-`cdk deploy`
 
 ### Push aws codecommit code to GitHub
 
